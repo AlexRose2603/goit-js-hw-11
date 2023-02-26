@@ -13,7 +13,7 @@
   <!-- ❗️❗️❗️ Add partials like so for every page -->
   <form class="search-form" id="search-form">
     <input type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
-    <button type="submit">Search</button>
+    <button type="submit" class="button">Search</button>
   </form>
 
   <div class="gallery">
@@ -23,21 +23,24 @@
     <img src="" alt="" loading="lazy" />
     <div class="info">
       <p class="info-item">
-        <b>Likes</b>
+        <b class="item-amount">Likes</b>
       </p>
       <p class="info-item">
-        <b>Views</b>
+        <b class="item-amount">Views</b>
       </p>
       <p class="info-item">
-        <b>Comments</b>
+        <b class="item-amount">Comments</b>
       </p>
       <p class="info-item">
-        <b>Downloads</b>
+        <b class="item-amount">Downloads</b>
       </p>
     </div>
   </div> -->
   <!-- <include src="./partials/example.html"></include> -->
-  <button type="button" class="load-more" disabled>Load more</button>
+
+  <button type="button" class="button load-more hidden" disabled>Load more</button>
+
+
 </body>
 
 </html>

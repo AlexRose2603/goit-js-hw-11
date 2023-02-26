@@ -1,27 +1,25 @@
 import axios from 'axios';
-const BASE_URL = 'https://pixabay.com/api/';
+axios.defaults.baseURL = 'https://pixabay.com/api/';
 const API_KEY = '33729999-7705c23e9189284ee9a61a627';
-const options = {
-  headers: {
-    key: API_KEY,
-    // q: this.searchQuery,
-    image_type: 'photo',
-    orientation: 'horizontal',
-    safesearch: 'true',
-    // page: this.page,
-    per_page: 40,
-  },
-};
+
 export default class PixabayApiService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
   }
-  async fetchImages() {
-    const URL = `${BASE_URL}?q=${this.searchQuery}&${options}${this.page}`;
-    const response = await axios.get(URL, options);
+  async getCards() {
+    const searchParams = new URLSearchParams({
+      key: API_KEY,
+      q: this.searchQuery,
+      image_type: 'photo',
+      orientation: 'horizontal',
+      safesearch: true,
+      page: this.page,
+      per_page: 40,
+    });
+    const response = await axios.get(`?${searchParams}`);
     this.nextPage();
-    return response.data.hits;
+    return response.data;
     // return fetch(URL)
     //   .then(response => response.json())
     //   .then(({ hits }) => {
@@ -29,7 +27,6 @@ export default class PixabayApiService {
     //     return hits;
     //   });
   }
-
   nextPage() {
     this.page += 1;
   }

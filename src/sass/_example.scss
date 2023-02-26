@@ -34,6 +34,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px;
 }
 
 input {
@@ -42,14 +43,15 @@ input {
   font-size: 18px;
   box-shadow: 4px 4px 5px 5px #61444e;
   margin-right: 20px;
+  outline-color: #63a187;
 }
 
 .photo-card {
   display: inline-block;
-  width: 500px;
+  width: 420px;
   font-size: 20px;
-  margin-right: 60px;
-  margin-left: 45px;
+  margin-right: 40px;
+  margin-left: 40px;
   padding: 10px;
   margin-bottom: 30px;
   border: 1px solid #63a187;
@@ -57,23 +59,12 @@ input {
   border-radius: 10px;
 }
 .card-img {
-  width: 500px;
+  width: 400px;
+  height: 300px;
   border-radius: 10px;
 }
-.article-link {
-  font-size: 22px;
-  padding: 15px;
-  width: 100px;
-  text-decoration: none;
-  color: #fff;
-  border-radius: 5px;
-  background-color: rgb(172, 122, 151);
-  cursor: pointer;
-}
-.article-link:hover {
-  box-shadow: 3px 3px 3px 3px #61444e;
-}
-button {
+
+.button {
   font-size: 24px;
   padding: 15px;
   background-color: #61444e;
@@ -83,12 +74,12 @@ button {
   cursor: pointer;
   box-shadow: 2px 3px 4px 2px #e7dadf;
 }
-button:hover {
+.button:hover {
   background-color: #63a187;
   transition: 250ms;
 }
 .load-more {
-  display: inline-block;
+  display: flex;
   margin: 0 auto;
 }
 .load-more:disabled {
@@ -97,4 +88,18 @@ button:hover {
 }
 .load-more.hidden {
   display: none;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+}
+.card-link {
+  text-decoration: none;
+}
+.item-amount {
+  font-weight: 500;
+  color: #350718;
 }
