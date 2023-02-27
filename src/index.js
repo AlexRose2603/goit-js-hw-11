@@ -9,7 +9,6 @@ var lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
   overlayOpacity: 0.8,
 });
-// const axios = require('axios');
 
 const loadMoreBtn = new LoadMoreBtn({
   selector: '.load-more',
@@ -27,13 +26,13 @@ console.log(pixabayApiService);
 
 function onSubmit(event) {
   event.preventDefault();
-  //const {target : form} = event;
-  //const value = form.elements.searchQuery.value.trim();
+
   const form = event.target;
   const value = form.elements.searchQuery.value.trim();
 
   pixabayApiService.searchQuery = value;
   pixabayApiService.resetPage();
+  clearCardsList();
   if (value === '') {
     loadMoreBtn.hide();
     onEmptySubmit();
@@ -44,8 +43,6 @@ function onSubmit(event) {
     onSuccessSearch();
     loadMoreBtn.show();
   }
-  // onSuccessSearch();
-  // loadMoreBtn.show();
   fetchCards()
     .catch(onSearchError)
     .finally(() => form.reset());
@@ -57,24 +54,16 @@ async function fetchCards() {
   try {
     const { hits, totalHits } = await pixabayApiService.getCards();
     console.log(totalHits);
-    if (!hits.length) {
-      return;
-    }
+
     const markup = hits.reduce((markup, hit) => markup + createMarkup(hit), '');
     addCardsToList(markup);
-    // loadMoreBtn.enable();
     if (hits.length < 40) {
       onSearchEnd();
       loadMoreBtn.hide();
     }
-    // let remainedCards = totalHits / 40;
-    // if (remainedCards < 40) {
-    //   onSearchEnd();
-    // }
   } catch (error) {
     throw new Error(error);
   }
-  // smothScroll();
   lightbox.refresh();
 }
 
@@ -105,14 +94,3 @@ function addCardsToList(markup) {
 function clearCardsList() {
   gallery.innerHTML = '';
 }
-
-//дивна функція, з нею не гарно=\
-// function smothScroll() {
-//   const { height: cardHeight } = document
-//     .querySelector('.photo-card')
-//     .firstElementChild.getBoundingClientRect();
-//   window.scrollBy({
-//     top: cardHeight * 0.5,
-//     behavior: 'smooth',
-//   });
-// }

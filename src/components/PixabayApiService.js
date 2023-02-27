@@ -20,12 +20,6 @@ export default class PixabayApiService {
     const response = await axios.get(`?${searchParams}`);
     this.nextPage();
     return response.data;
-    // return fetch(URL)
-    //   .then(response => response.json())
-    //   .then(({ hits }) => {
-    //     this.nextPage();
-    //     return hits;
-    //   });
   }
   nextPage() {
     this.page += 1;
